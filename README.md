@@ -14,6 +14,10 @@ minimum distance, determine S(6), or improve the published global bound.
 
 ## Read the note
 
+- [Research page in English](https://beedbyte.tech/research/schur-6/v/5),
+  [German](https://beedbyte.tech/de/research/schur-6/v/5), and
+  [Simplified Chinese](https://beedbyte.tech/zh/research/schur-6/v/5), with
+  both reproduction ZIPs and the earlier website versions
 - [English manuscript](paper.en.md) and [PDF reading copy](schur-radius33-note.pdf)
 - [German summary](abstract.de.md) and [Simplified Chinese summary](abstract.zh.md)
 - [LaTeX source](schur-radius33-note.tex) and [PDF build script](build_pdf.py)
@@ -53,8 +57,9 @@ scripts using the symmetry and exception stated in that paper. The local
 34-change argument, accompanying scripts, and note are attributed to
 **Beedbyte · School Scotty**. Correspondence: beedbyte@3g-projects.de.
 
-AI tools assisted exploration and drafting. The explicit witnesses and
-deterministic checks are supplied for independent review. This work has not
-undergone external peer review. No DOI has been assigned to this repository
-package.
-
+AI agents transcribed the published partition, wrote and ran the finite
+checkers, and performed internal checks of the local argument. A separate
+source comparison checked all 269 printed certificate entries against the
+publisher's PDF. The explicit witnesses and deterministic checks are supplied
+for independent review. This work has not undergone external peer review. No
+DOI has been assigned to this repository package.
