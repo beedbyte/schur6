@@ -1,0 +1,62 @@
+# A 34-Recoloring Obstruction Near a Published Six-Color Schur Partition of [1,536]
+
+**Beedbyte · School Scotty · 8 October 2026**  
+Correspondence: beedbyte@3g-projects.de
+
+## Abstract
+
+Fredricksen and Sweet published a sum-free six-color partition of [1,536], establishing S(6) ≥ 536. We reproduce a finite check of their certificate and study one local extension question. Let c be that **labeled** coloring. If a sum-free six-coloring d of [1,537] exists, then its restriction to [1,536] differs from c in at least 34 positions. The obstruction is a short collection of explicitly checkable Schur triples around the complementary pair (9,528). This local distance statement gives neither a coloring of [1,537] nor a global bound on S(6).
+
+## 1. Certificate and scope
+
+A set is sum-free when it contains no x, y, z with x+y=z, including x=y. We write S(k) for the largest n admitting a partition of [1,n] into k sum-free sets. Fredricksen and Sweet [1] give a six-set partition of [1,536] and thereby prove S(6) ≥ 536. Their lower bound is also used as an input in later work [2].
+
+The accompanying `fredricksen_sweet_536.json` transcribes their six printed lists. Each integer from 1 through 268 occurs once, together with 358 in class 1. Mirroring the listed values about 537 gives the complete coloring, with the paper's exception: 179 is in class 4, whereas its partner 358 is in class 1. The transcribed lists were compared entry by entry with the printed construction in [1]: the six list lengths are 65, 43, 55, 39, 32, 35, and all entries match in order.
+
+The `verify.py` expansion assigns exactly one color to every integer in [1,536]. Direct enumeration tests all 71,824 triples 1 ≤ x ≤ y with x+y=z ≤ 536 and finds none monochromatic. The expanded color-class sizes are 129, 86, 110, 77, 64, 70. This reproduces the published certificate; it is not a new lower bound.
+
+## 2. A local extension obstruction
+
+Keep the labels of the six classes fixed. For any coloring d of [1,537], define H(d,c) as the number of positions i in [1,536] where d(i) ≠ c(i). No permutation of color labels is minimized over.
+
+**Proposition.** If d is a sum-free six-coloring of [1,537], then H(d,c) ≥ 34.
+
+**Proof.** For each possible value of d(537), inspect the 268 disjoint complementary pairs (x,537−x), 1 ≤ x ≤ 268. The counts whose two entries both have that color in c are, for colors 1 through 6 respectively, (64, 43, 55, 38, 32, 35). At least one entry in each such pair must change before 537 can receive that color. Consequently H(d,c) ≤ 33 forces d(537)=5. Let E contain both endpoints of the 32 class-5 complementary pairs. It has 64 entries; each pair requires a change. Hence at most one entry of [1,536] outside E can change. The spare change may instead be a second endpoint in E, leaving every entry outside E fixed.
+
+In particular (9,528) is one of the 32 pairs, so at least one of its endpoints must change from color 5. The following table gives two conditional Schur triples for every alternative color of either endpoint. In each triple, all entries other than the changed endpoint have the indicated color in c and lie outside E. Moreover, the two sets of these other entries are disjoint within each row.
+
+| Changed entry and color | Blocker A | Blocker B |
+| --- | --- | --- |
+| 9 → 1 | 1+8=9 | 5+9=14 |
+| 9 → 2 | 9+25=34 | 9+63=72 |
+| 9 → 3 | 9+60=69 | 9+241=250 |
+| 9 → 4 | 4+9=13 | 9+64=73 |
+| 9 → 6 | 9+9=18 | 9+148=157 |
+| 528 → 1 | 1+528=529 | 5+523=528 |
+| 528 → 2 | 25+503=528 | 63+465=528 |
+| 528 → 3 | 60+468=528 | 241+287=528 |
+| 528 → 4 | 4+524=528 | 64+464=528 |
+| 528 → 6 | 148+380=528 | 199+329=528 |
+
+For example, after 9 → 1, both 1+8=9 and 5+9=14 would be monochromatic if the other entries kept their original colors. Eliminating both requires changing an entry in each of the disjoint sets {1,8} and {5,14}. That needs two changes outside E, although at most one is available. The same argument applies to every row. In 9+9=18, the equal summands refer to the same changed position, so its other-entry set is {18}. Thus neither endpoint of (9,528) can receive any alternative color, a contradiction. This proves the proposition.
+
+## 3. Reproduction and limitations
+
+The deposit includes the JSON transcription and four Python 3 scripts. From the `repro` directory run:
+
+```text
+python verify.py
+python exact32.py
+python exact33.py
+python audit33.py
+```
+
+`verify.py` checks the certificate and complementary-pair counts. `exact32.py` and `exact33.py` test necessary fixed-entry obstructions in the 32- and 33-change neighborhoods. `audit33.py` separately hard-codes and checks the 20 triples displayed above, their colors, arithmetic, fixed-position status, and disjointness. All scripts are deterministic and use the Python standard library only. The accompanying README gives exact checksums and expected output.
+
+The proposition concerns this one labeled certificate. It neither decides whether [1,537] admits a six-coloring nor asserts that a coloring exists at distance 34. It does not prove S(6)=536 and does not improve the published bound S(6) ≥ 536. The argument and code were checked within the project; external peer review has not occurred. AI tools assisted exploration and drafting. The finite checks and source comparison are documented for independent reproduction.
+
+## References
+
+[1] H. Fredricksen and M. M. Sweet, "Symmetric Sum-Free Partitions and Lower Bounds for Schur Numbers," *The Electronic Journal of Combinatorics* 7 (2000), R32. https://www.combinatorics.org/ojs/index.php/eljc/article/download/v7i1r32/pdf/
+
+[2] N. Bengone, A. Brouk, M. Grinsztajn, T. Helbert, B. Lugherini, A. Rimmel, and J. Tomasik, "Shifted S-templates and improved lower bounds for Schur numbers," arXiv:2607.15034 (2026). https://arxiv.org/abs/2607.15034
