@@ -40,11 +40,8 @@ python repro/audit33.py
 
 The scripts check the 536-entry certificate, all 71,824 Schur triples with
 `1 ≤ x ≤ y` and `x+y ≤ 536`, the complementary-pair counts for 537, and the
-20 explicit blocker triples used in the local proof. Expected results and
-file hashes are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md) and
-[MANIFEST.sha256](MANIFEST.sha256). The independently documented comparison
-between the JSON lists and the original printed lists is in
-[source-comparison.md](source-comparison.md).
+20 explicit blocker triples used in the local proof. Expected results are in [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+[MANIFEST.sha256](MANIFEST.sha256) records the [original release snapshot](https://github.com/beedbyte/schur6/tree/bb23647ff5b94dc86f003ee3cf3a9cd5d75777a1); its README hash belongs to that snapshot rather than this current overview. The independently documented comparison between the JSON lists and the original printed lists is in [source-comparison.md](source-comparison.md).
 
 ## Source and credit
 
@@ -55,7 +52,9 @@ Bounds for Schur Numbers,” *The Electronic Journal of Combinatorics* 7
 Our JSON file is a transcription of their six published lists, expanded by the
 scripts using the symmetry and exception stated in that paper. The local
 34-change argument, accompanying scripts, and note are attributed to
-**Beedbyte · School Scotty**. Correspondence: beedbyte@3g-projects.de.
+**Beedbyte**. Correspondence: beedbyte@3g-projects.de.
+
+## Methods and verification
 
 AI agents transcribed the published partition, wrote and ran the finite
 checkers, and performed internal checks of the local argument. A separate
